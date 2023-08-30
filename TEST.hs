@@ -85,7 +85,11 @@ digitoUnidades x = mod x 10
 digitoDecenas :: Int -> Int
 digitoDecenas x = mod (div x 10) 10
 
-
+--Ejercicio 3
+estanRelacionados :: Int -> Int -> Bool
+estanRelacionados a b | a == 0 && b == 0 = False
+                      | mod a b == 0 = True 
+                      | otherwise = False
 
 
 
