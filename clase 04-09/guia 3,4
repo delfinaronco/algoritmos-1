@@ -1,0 +1,14 @@
+sonTodosCero :: Integer -> Integer -> Integer -> Bool
+sonTodosCero a b c | a==0 && b==0 && c==0 = True
+                   | otherwise = False
+
+sonTodosCero1 :: Integer -> Integer -> Integer -> Bool
+sonTodosCero1 0 0 0 = True
+sonTodosCer01 _ _ _ = False      
+
+f6 :: Float -> Int -> Bool
+f6 a b = truncate a == b 
+
+f3 :: Float -> Float
+f3 n | n <= 9 = 7
+     | n >= 3 = 5
