@@ -49,3 +49,8 @@ todosDigitosIguales n | n == mod n 10 = True
 
 --Ejercicio 8
 iesimoDigito :: Integer -> Integer -> Integer
+iesimoDigito n i = mod (div n (10^(cantDigitos n - i))) 10
+
+cantDigitos :: Integer -> Integer
+cantDigitos x | x == 0 = 0
+              | otherwise = 1 + cantDigitos (div x 10)
