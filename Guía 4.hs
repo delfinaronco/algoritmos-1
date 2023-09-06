@@ -54,3 +54,22 @@ iesimoDigito n i = mod (div n (10^(cantDigitos n - i))) 10
 cantDigitos :: Integer -> Integer
 cantDigitos x | x == 0 = 0
               | otherwise = 1 + cantDigitos (div x 10)
+
+--Ejercicio 9
+esCapicua :: Integer -> Bool
+esCapicua n | n <= 9 = True
+            | otherwise = (esCapicuaAux n) && esCapicua (div (n - (iesimoDigito n (cantDigitos 1))*10^((cantDigitos n)-1)) 10)
+
+esCapicuaAux :: Integer -> Bool
+esCapicuaAux n = iesimoDigito n (cantDigitos n) == iesimoDigito n (cantDigitos 1)
+
+--Ejercicio 10
+--a)
+f1 :: Integer -> Integer
+f1 0 = 1
+f1 n = 2^n + f1 (n-1)
+
+--b)
+f2 :: Integer -> Integer -> Integer
+f2 n q | q == 1 = n + 1
+       | q /= 1 = q^n + f2 (n-1) q
