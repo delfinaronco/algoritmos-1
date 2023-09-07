@@ -71,5 +71,10 @@ f1 n = 2^n + f1 (n-1)
 
 --b)
 f2 :: Integer -> Integer -> Integer
-f2 n q | q == 1 = n + 1
-       | q /= 1 = q^n + f2 (n-1) q
+f2 n q | n == 1 = q
+       | otherwise = q^n + f2 (n-1) q
+       
+--c) 
+f3 :: Integer -> Integer -> Integer
+f3 n q = f2 (2 * n) q
+
