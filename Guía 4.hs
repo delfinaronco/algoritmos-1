@@ -65,19 +65,44 @@ esCapicuaAux n = iesimoDigito n (cantDigitos n) == iesimoDigito n (cantDigitos 1
 
 --Ejercicio 10
 --a)
-f1 :: Integer -> Integer
+f1 :: Int -> Int
 f1 0 = 1
 f1 n = 2^n + f1 (n-1)
 
 --b)
-f2 :: Integer -> Integer -> Integer
-f2 n q | n == 1 = q
-       | otherwise = q^n + f2 (n-1) q
+f2 :: Int -> Float -> Float
+f2 0 q = 0
+f2 n q = q^n + f2 (n-1) q
        
 --c) 
-f3 :: Integer -> Integer -> Integer
-f3 n q = f2 (2 * n) q
+f3 :: Int -> Float -> Float
+f3 0 q = 0
+f3 n q = (f3 (n-1) q) + q^(2*n-1) + q^(2*n)
+
+-- o sin recursión
+f3' :: Int -> Float -> Float
+f3' n q = f2 (2*n) q
 
 --d)
-f4 :: Integer -> Integer -> Integer
-f4 n q = f3 n q - f2 (n-1) q
+f4 :: Int -> Float -> Float
+f4 0 q = 1
+f4 n q = q^(2*n-1) + q^(2*n) - q^(n-1) + (f4 (n-1) q)
+
+-- sin recursión
+f4' :: Int -> Float -> Float
+f4' n q = (f3 n q) - (f2 (n-1) q)
+
+--Ejercicio 11
+--a)
+fact :: Int -> Int
+fact 1 = 1
+fact n = n*(fact(n-1))
+
+eAprox :: Int -> Float
+eAprox 0 = 1
+eAprox n = (eAprox (n-1)) + 1 / (fromIntegral (fact n))
+
+--b)
+e :: Float
+e = eAprox 10
+
