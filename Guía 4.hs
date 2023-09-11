@@ -106,3 +106,37 @@ eAprox n = (eAprox (n-1)) + 1 / (fromIntegral (fact n))
 e :: Float
 e = eAprox 10
 
+--Ejercicio 12
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox n = (sucesionA n) - 1
+
+sucesionA :: Integer -> Float
+sucesionA n | n == 1 = 2
+            | otherwise = 2 + (1 / sucesionA (n-1))
+
+--Ejercicio 13
+f :: Int -> Int -> Int
+f 0 m = 0
+f n m = (f (n-1) m) + round (f2 m (fromIntegral n))
+
+--Ejercicio 14
+sumaPotencias :: Float -> Int -> Int -> Float
+sumaPotencias q n 0 = 0
+sumaPotencias q n m = (sumaPotencias q n (m-1)) + (q^m * (f2 n q))
+
+--Ejercicio 15
+sumaRacionales :: Int -> Int -> Float
+sumaRacionales n 0 = 0
+sumaRacionales n m = (sumaRacionales n (m-1)) + (fromIntegral (sumatoria n)) / (fromIntegral m)
+
+sumatoria :: Int -> Int
+sumatoria 0 = 0
+sumatoria n = n + sumatoria (n-1)
+
+--Ejercicio 16
+menorDivisor :: Integer ->Integer
+menorDivisor n = menorDivisorHasta n 2
+
+menorDivisorHasta :: Integer -> Integer -> Integer -- se requiere que q == 2
+menorDivisorHasta n q | mod n q == 0 = q
+                      | otherwise = menorDivisorHasta n (q+1)
