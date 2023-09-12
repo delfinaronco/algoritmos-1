@@ -144,6 +144,7 @@ menorDivisorDesde n q | mod n q == 0 = q
 
 --b)
 esPrimo:: Integer-> Bool
+esPrimo 1 = False
 esPrimo n = menorDivisor n == n
 
 --c)
