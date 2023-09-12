@@ -134,9 +134,33 @@ sumatoria 0 = 0
 sumatoria n = n + sumatoria (n-1)
 
 --Ejercicio 16
+--a)
 menorDivisor :: Integer ->Integer
-menorDivisor n = menorDivisorHasta n 2
+menorDivisor n = menorDivisorDesde n 2
 
-menorDivisorHasta :: Integer -> Integer -> Integer -- se requiere que q == 2
-menorDivisorHasta n q | mod n q == 0 = q
-                      | otherwise = menorDivisorHasta n (q+1)
+menorDivisorDesde :: Integer -> Integer -> Integer -- se requiere que q == 2
+menorDivisorDesde n q | mod n q == 0 = q
+                      | otherwise = menorDivisorDesde n (q+1)
+
+--b)
+esPrimo:: Integer-> Bool
+esPrimo n = menorDivisor n == n
+
+--c)
+sonCoprimos:: Integer -> Integer -> Bool
+sonCoprimos _ 1 = True
+sonCoprimos 1 _ = True
+sonCoprimos a b | (a > b) && mod a (menorDivisor b) == 0 = False
+                | (a > b) && mod a (menorDivisor b) /= 0 = sonCoprimos a (div b (menorDivisor b))
+                | (b > a) && mod b (menorDivisor a) == 0 = False
+                | (b > a) && mod b (menorDivisor a) /= 0 = sonCoprimos b (div a (menorDivisor a))
+
+--d) 
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n = nEsimoPrimoAux n 2 0
+
+nEsimoPrimoAux :: Integer -> Integer -> Integer -> Integer
+nEsimoPrimoAux n i k | n == k = i-1
+                     | esPrimo i = nEsimoPrimoAux n (i+1) (k+1)
+                     | otherwise = nEsimoPrimoAux n (i+1) k
+
