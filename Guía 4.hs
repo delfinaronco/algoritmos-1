@@ -135,10 +135,10 @@ sumatoria n = n + sumatoria (n-1)
 
 --Ejercicio 16
 --a)
-menorDivisor :: Integer ->Integer
+menorDivisor :: Integer -> Integer
 menorDivisor n = menorDivisorDesde n 2
 
-menorDivisorDesde :: Integer -> Integer -> Integer -- se requiere que q == 2
+menorDivisorDesde :: Integer -> Integer -> Integer 
 menorDivisorDesde n q | mod n q == 0 = q
                       | otherwise = menorDivisorDesde n (q+1)
 
