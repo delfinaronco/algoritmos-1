@@ -158,10 +158,12 @@ sonCoprimos a b | (a > b) && mod a (menorDivisor b) == 0 = False
 
 --d) 
 nEsimoPrimo :: Integer -> Integer
-nEsimoPrimo n = nEsimoPrimoAux n 2 0
+nEsimoPrimo 1 = 2
+nEsimoPrimo n = minimoPrimoDesde (1 + nEsimoPrimo (n-1))
 
-nEsimoPrimoAux :: Integer -> Integer -> Integer -> Integer
-nEsimoPrimoAux n i k | n == k = i-1
-                     | esPrimo i = nEsimoPrimoAux n (i+1) (k+1)
-                     | otherwise = nEsimoPrimoAux n (i+1) k
+minimoPrimoDesde :: Integer -> Integer
+minimoPrimoDesde n | esPrimo n = n
+                   | otherwise = minimoPrimoDesde (n+1)
+
+      
 
