@@ -161,6 +161,15 @@ nEsimoPrimo :: Integer -> Integer
 nEsimoPrimo 1 = 2
 nEsimoPrimo n = minimoPrimoDesde (1 + nEsimoPrimo (n-1))
 
+--Ejercicio 17
+esFibonacci :: Integer -> Bool
+esFibonacci n = esFibonacciAux n 0
+
+esFibonacciAux :: Integer -> Integer -> Bool
+esFibonacciAux n i | n == fibonacci i = True
+                   | fibonacci i > n = False
+                   | otherwise = esFibonacciAux n (i+1)
+
 minimoPrimoDesde :: Integer -> Integer
 minimoPrimoDesde n | esPrimo n = n
                    | otherwise = minimoPrimoDesde (n+1)
