@@ -174,5 +174,31 @@ minimoPrimoDesde :: Integer -> Integer
 minimoPrimoDesde n | esPrimo n = n
                    | otherwise = minimoPrimoDesde (n+1)
 
+--Ejercicio 18
+mayorDigitoPar :: Integer ->Integer
+mayorDigitoPar n | n < 10 && par n = n
+                 | n < 10 = -1
+                 | par ultimoDigito = max ultimoDigito resultadoRecursion
+                 | otherwise = resultadoRecursion
+            where
+                  ultimoDigito = mod n 10
+                  par a = mod a 2 == 0
+                  resultadoRecursion = mayorDigitoPar (div n 10)
+
+--Ejercicio 19
+esSumaInicialDePrimos :: Integer -> Bool
+esSumaInicialDePrimos n = esSumaInicialDePrimosAux n 2
+
+esSumaInicialDePrimosAux :: Integer -> Integer -> Bool
+esSumaInicialDePrimosAux n q | n == sumaPrimosHasta 2 q = True
+                             | n < sumaPrimosHasta 2 q = False
+                             | otherwise = esSumaInicialDePrimosAux n (q+1)
+
+sumaPrimosHasta :: Integer -> Integer -> Integer
+sumaPrimosHasta m n  | esPrimo n && n == m = m
+                     | n == m = 0
+                     | esPrimo m = m + sumaPrimosHasta (m+1) n
+                     | otherwise = sumaPrimosHasta (m+1) n
+
       
 
