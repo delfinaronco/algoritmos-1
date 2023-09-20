@@ -52,3 +52,91 @@ todosDistintos :: (Eq t) => [t] -> Bool
 todosDistintos [] = True
 todosDistintos (x:xs)   | pertenece x xs = False
                         | otherwise = todosDistintos xs
+                        
+-- 4)
+hayRepetidos :: (Eq t) => [t] -> Bool
+hayRepetidos [] = False
+hayRepetidos (x:xs) = pertenece x xs || hayRepetidos xs
+
+-- 5)
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar n [] = []
+quitar n (x:xs) | n == x = xs
+                | otherwise = x:(quitar n xs)
+
+-- 6)
+quitarTodos :: (Eq t) => t -> [t] -> [t]
+quitarTodos n [] = []
+quitarTodos n (x:xs) | n == x = quitarTodos n (xs)
+                     | otherwise = x:(quitarTodos n xs)
+
+-- 7)
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) | hayRepetidos (x:xs) = x:(eliminarRepetidos(quitarTodos x xs))
+                         | otherwise = (x:xs)
+
+-- 8)
+mismosElementos:: (Eq t) => [t] -> [t] -> Bool
+mismosElementos a b = (mismosElementos' a b) && (mismosElementos' b a)
+
+
+mismosElementos':: (Eq t) => [t] -> [t] -> Bool
+mismosElementos' [] _ = True
+mismosElementos' (x:xs) ys  | pertenece x ys = mismosElementos' xs ys
+                            | otherwise = False
+
+-- 9) 
+capicua :: (Eq t) => [t] -> Bool
+capicua xs = xs == reverso (xs)
+
+-- Ejercicio 3
+-- 1)
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+-- 2)
+productoria :: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = x * productoria xs
+
+-- 3)
+maximo :: [Integer] -> Integer
+maximo [x] = x
+maximo (x:y:ys) | x >= y = maximo (x:ys)
+                | otherwise = maximo (y:ys)
+-- 4)
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN n [] = []
+sumarN n (x:xs) = n + x : (sumarN n xs)
+
+-- 5)
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+-- 6)
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = sumarN (ultimo (x:xs)) (x:xs)
+
+-- 7)
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) | mod x 2 == 0 = x:(pares xs)
+             | otherwise = pares xs
+
+-- 8)
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN n [] = []
+multiplosDeN n (x:xs) | mod x n == 0 = x:(multiplosDeN n (xs))
+                      | otherwise = multiplosDeN n (xs)
+
+-- 9)
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:xs) = ordenar (quitar max (x:xs)) ++ [max]
+                where max = maximo (x:xs)
+
+-- Ejercicio 4
+
+
