@@ -200,5 +200,17 @@ sumaPrimosHasta m n  | esPrimo n && n == m = m
                      | esPrimo m = m + sumaPrimosHasta (m+1) n
                      | otherwise = sumaPrimosHasta (m+1) n
 
-      
+-- Ejercicio 20
+sumaDivisoresDesde :: Integer -> Integer -> Integer
+sumaDivisoresDesde n m | n == m = m
+                       | n > m = 0
+                       | n < m && mod m n == 0 = n + sumaDivisoresDesde (n+1) m
+                       | otherwise = sumaDivisoresDesde (n+1) m
+
+sumaDivisores :: Integer -> Integer
+sumaDivisores m = sumaDivisoresDesde 1 m 
+
+tomaValorMax :: Integer -> Integer -> Integer
+tomaValorMax n m     | (n == m) = sumaDivisores m
+                     | otherwise = max (sumaDivisores m) (tomaValorMax (n+1) m)
 
