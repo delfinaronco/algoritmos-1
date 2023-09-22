@@ -213,3 +213,32 @@ aplanarConNBlancos [] n = []
 aplanarConNBlancos (xs:[]) n = xs ++ []
 aplanarConNBlancos (xs:xss) n = (xs ++ nBlancos n) ++ aplanarConNBlancos xss n
 
+-- Ejercicio 5
+-- 1)
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada [] = []
+sumaAcumulada l = sumaAcumulada (quitarUltimo l) ++ [sumaAnteriores l]
+
+sumaAnteriores :: Num p => [p] -> p
+sumaAnteriores [] = 0
+sumaAnteriores (x:xs) = x + sumaAnteriores xs
+
+quitarUltimo :: (Num t) => [t] -> [t]
+quitarUltimo (x:xs) | null xs = []
+                    | otherwise = x : quitarUltimo xs
+
+-- 2)
+menorDivisorDesde :: Integer -> Integer -> Integer
+menorDivisorDesde a i  | mod a i == 0 = i
+                       | otherwise = menorDivisorDesde a (i+1)
+
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorDesde n 2
+
+factoresPrimos :: Integer -> [Integer]
+factoresPrimos 1 = []
+factoresPrimos n = (menorDivisor n) : factoresPrimos (div n (menorDivisor n))
+        
+descomponerEnPrimos :: [Integer] -> [[Integer]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos (x:xs) = factoresPrimos x : descomponerEnPrimos xs
