@@ -224,3 +224,61 @@ def viaje_aristoteles(año_partida: int)-> str:
             print(f"viajaste {i} años en el tiempo, estamos en el año {año_partida-20}")
             año_partida -= 20
             i += 20
+
+def viaje_aristoteles_for (año_partida: int) -> str:
+	año_aristoteles = -384
+	for i in range (año_partida, año_aristoteles,-20):
+		print (f"viajaste 20 años en el tiempo, estamos en el año {i}")
+		
+# Ejercicio 8
+# 1)
+x = 5
+y = 7		
+x = x + y
+
+# 2)
+x = 5
+y = 7
+z = x + y
+y = z * 2
+
+# 3)
+x = 5
+y = 7
+x = "hora"
+y = x * 2
+
+# 4)
+x = False
+res = not(x)
+
+# 5)
+x = True
+y = False
+res = x and y
+x =  res and x
+
+# Ejercicio 9
+
+def rt (x: int, g: int) -> int:
+	g = g + 1
+	return x + g
+
+g: int = 0
+def ro (x: int) -> int:
+	global g
+	g = g + 1
+	return x + g
+
+"""
+ # 1) nos da 2 3 4
+
+print (ro(1))
+print (ro(1))
+print (ro(1))
+
+# 2) nos da 2 2 2
+print (rt(1,0))
+print (rt(1,0))
+print (rt(1,0))
+ """
