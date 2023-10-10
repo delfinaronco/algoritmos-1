@@ -72,3 +72,45 @@ def esPalindromo (l: str) -> bool:
 
 # print(esPalindromo ("oso"))
 
+# 7)
+def contraFuerte (c: str) -> str:
+    def tieneDigito (a:str) -> bool:
+        for i in a:
+            if i.isdigit():
+                return True
+        return False
+    verde: bool = len(c) > 8  and (not c.islower()) and (not c.isupper()) and tieneDigito(c)
+    if verde:
+        return "VERDE"
+    elif len(c) < 5:
+        return "ROJA"
+    else:
+        return "AMARILLA"
+    
+# 8) 
+def saldo_cuenta (historia: list) -> int:
+    saldo: int = 0
+    for i in historia:
+        if i[0] == "I":
+            saldo += i[-1]
+        elif i[0] == "R":
+            saldo = saldo - i[-1]
+    return saldo
+
+# print(saldo_cuenta ([("I",2000),("R",20),("R",1000),("I",300)]))
+
+# 9) 
+def tiene_3_vocales_distintas (palabra: str) -> bool:
+    palabra.lower()
+    vocaleshalladas: list = []
+    for letra in palabra:
+        if letra == 'a' or letra == 'e' or letra == 'i' or letra == 'o' or letra == 'u':
+            vocaleshalladas.append(letra)
+    if len (vocaleshalladas) >= 3:
+        return True
+    else:
+        return False
+            
+# print(tiene_3_vocales_distintas("camaleon"))
+
+
