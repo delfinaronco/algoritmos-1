@@ -113,4 +113,49 @@ def tiene_3_vocales_distintas (palabra: str) -> bool:
             
 # print(tiene_3_vocales_distintas("camaleon"))
 
+# SEGUNDA PARTE
+# Ejercicio 2
 
+# 1)
+def cero_en_pos_pares_inout (l: list[int]) -> list:
+    for i in range (len(l)):
+        if i % 2 == 0:
+            l[i] = 0
+    return l
+
+# 2)
+def cero_en_pos_pares_in (l: list[int]) -> list:
+    listaNueva: list = []
+    for i in range (len(l)):
+        if i % 2 == 0:
+            listaNueva.append(0)
+        else:
+            listaNueva.append(i)
+    return listaNueva
+
+# 3)
+def sin_vocales (text: str) -> str:
+    vocales: list[str] = ["a","e","i","o","u"]
+    nuevoText: str  = ""
+    for letter in text:
+        if letter not in vocales:
+            nuevoText += letter
+    return nuevoText
+
+# 4)
+def reemplazaVocales (text: str) -> str:
+    vocales: list[str] = ["a", "e", "i", "o", "u"]
+    nuevoText: str = ""
+    for letter in text:
+        if letter in vocales:
+            nuevoText += "_"
+        else:
+            nuevoText += letter
+    return nuevoText
+
+# 5)
+def daVueltaStr (text: str) -> str:
+    textDadoVuelta : str = ""
+    for i in range(len(text)-1, -1, -1):
+        textDadoVuelta += text[i]
+    return textDadoVuelta
