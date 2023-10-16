@@ -159,3 +159,16 @@ def daVueltaStr (text: str) -> str:
     for i in range(len(text)-1, -1, -1):
         textDadoVuelta += text[i]
     return textDadoVuelta
+    
+# Ejercicio 3
+ def aprobado (notas: list[int]) -> int:
+    promedio: int = sumTotal(notas) / len(notas)
+    if notas >= 4 and promedio >= 7:
+        res = 1
+    elif notas >= 4 and promedio >= 4 and promedio < 7:
+        res = 2
+    else: 
+        res = 3
+    return res
+
+print(aprobado ([4,5,6,7,8]))
