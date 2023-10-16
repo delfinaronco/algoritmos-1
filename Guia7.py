@@ -161,14 +161,13 @@ def daVueltaStr (text: str) -> str:
     return textDadoVuelta
     
 # Ejercicio 3
- def aprobado (notas: list[int]) -> int:
+def aprobado (notas: list[int]) -> int:
     promedio: int = sumTotal(notas) / len(notas)
-    if notas >= 4 and promedio >= 7:
-        res = 1
-    elif notas >= 4 and promedio >= 4 and promedio < 7:
-        res = 2
-    else: 
-        res = 3
+    for i in range (0,len(notas)):
+        if all (nota >= 4 for nota in notas) and promedio >= 7:
+            res = 1
+        elif all (nota >= 4 for nota in notas) and promedio >= 4 and promedio < 7:
+            res = 2
+        else:
+            res = 3
     return res
-
-print(aprobado ([4,5,6,7,8]))
