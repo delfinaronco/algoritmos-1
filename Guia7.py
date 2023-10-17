@@ -171,3 +171,25 @@ def aprobado (notas: list[int]) -> int:
         else:
             res = 3
     return res
+
+# Ejercicio 4
+
+# 2)
+def sube()-> int:
+    saldo = 0
+    historial: list = []
+    tipoDeOperacion = ""
+    while tipoDeOperacion != "X":
+        tipoDeOperacion = input("OPERACION A REALIZAR: ")
+        if tipoDeOperacion == "C":
+            monto = int(input("MONTO: "))
+            saldo += monto
+            historial.append((tipoDeOperacion, monto))
+        elif tipoDeOperacion == "D":
+            monto = int(input("MONTO: "))
+            saldo = saldo - monto
+            historial.append((tipoDeOperacion, monto))
+    return historial
+
+# print(sube())
+
