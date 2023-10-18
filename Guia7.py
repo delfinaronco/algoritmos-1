@@ -39,17 +39,13 @@ def sumTotal (s: list[int]) -> int:
 # print(sumTotal([1,2,3,4,5]))
 
 # 4)
-def ordenados(s: list[int]) -> bool:
-    elemanterior: int = s[0]
-    s = s[1::]
-    for i in s:
-        if elemanterior > i:
+def ordenados(l) -> bool:
+    for i in range (len(l)-1):
+        if not (l[i] < l[i+1]): 
             return False
-        else:
-            elemanterior = i
     return True
 
-# print(ordenados ([1,2,3,4,1]))
+# print(ordenados([1,2,3,2]))
 
 # 5)
 def palabraMayorA7 (l: list[str]) -> bool:
@@ -213,5 +209,41 @@ def sube()-> int:
     return f"{historial}, tu saldo disponible es:{saldo}"
 
 # print(sube())
+
+# Ejercicio 5
+# 1)
+def pertenece_a_cada_uno (l: list, elem: int) -> bool:
+    res: list[bool] = []
+    for sublista in l:
+        if pertenece (sublista,elem):
+            res.append(True)
+        else:
+            res.append(False)
+    print(res)
+
+# pertenece_a_cada_uno([[1,2,3],[2,4]],1)
+
+# 2)
+def es_matriz (s: list) -> bool:
+    inicio: int = len(s[0])
+    for i in range(len(s)):
+        if inicio != len(s[i]):
+            return False
+    return True
+
+# print(es_matriz([[1,2],[1,2],[1,2,3]]))
+
+# 3)
+def filas_ordenadas (matriz: list) -> list:
+    res: list[bool] = []
+    for fila in matriz:
+        if ordenados(fila) == True:
+            res.append(True)
+        else:
+            res.append(False)
+    return res
+
+# print(filas_ordenadas ([[1,2,3],[3,2],[4,6,9]]))
+
 
 
