@@ -1,3 +1,6 @@
+import random
+import numpy as np
+
 # Ejercicio 1
 
 # 1)
