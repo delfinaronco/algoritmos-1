@@ -106,11 +106,13 @@ def tiene_3_vocales_distintas (palabra: str) -> bool:
     for letra in palabra:
         if letra == 'a' or letra == 'e' or letra == 'i' or letra == 'o' or letra == 'u':
             vocaleshalladas.append(letra)
+    vocaleshalladas = eliminar_repetidos(vocaleshalladas)
     if len (vocaleshalladas) >= 3:
         return True
     else:
         return False
-            
+    
+# print(tiene_3_vocales_distintas("goool"))  
 # print(tiene_3_vocales_distintas("camaleon"))
 
 # SEGUNDA PARTE
@@ -159,6 +161,15 @@ def daVueltaStr (text: str) -> str:
     for i in range(len(text)-1, -1, -1):
         textDadoVuelta += text[i]
     return textDadoVuelta
+# 6)
+def eliminar_repetidos (l):
+    res = []
+    for i in range (len(l)):
+        if not pertenece (res,l[i]):
+            res.append(l[i])
+    return res
+
+# print(eliminar_repetidos(["hola","hola","chau"]))
     
 # Ejercicio 3
 def aprobado (notas: list[int]) -> int:
@@ -173,6 +184,16 @@ def aprobado (notas: list[int]) -> int:
     return res
 
 # Ejercicio 4
+# 1)
+def mis_estudiantes ():
+    mis_estudiantes: list = []
+    name = ""
+    while name != "listo":
+        name = input("nombre de estudiantes:")
+        mis_estudiantes.append(name)
+        if pertenece (mis_estudiantes,"listo"):
+            mis_estudiantes.remove("listo")
+    return (mis_estudiantes)
 
 # 2)
 def sube()-> int:
@@ -189,7 +210,8 @@ def sube()-> int:
             monto = int(input("MONTO: "))
             saldo = saldo - monto
             historial.append((tipoDeOperacion, monto))
-    return historial
+    return f"{historial}, tu saldo disponible es:{saldo}"
 
 # print(sube())
+
 
