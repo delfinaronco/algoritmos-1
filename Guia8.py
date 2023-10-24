@@ -89,5 +89,65 @@ def jugarCartonDeBingo (carton: list, bolillero: Queue) -> int:
 
 print(jugarCartonDeBingo(carton,q))
 
+# Ejercicio 19
+
+def agruparPorLongitud (nombre_archivo_input: str) -> dict:
+    archivo_input = open(nombre_archivo_input,'r')     # Abre el archivo en modo lectura
+
+    res : dict = {}
+
+    for line in archivo_input.readlines():
+        for word in line.split():
+            if len(word) not in res:
+                
+                res[len(word)] = 1
+            else:
+                res[len(word)] += 1
+        
+    archivo_input.close()
+
+    return res
+
+# print(agruparPorLongitud('archivo_palabras.txt'))
+
+# Ejercicio 21
+
+def laPalabraMasFrecuente(nombre_archivo_input: str):
+    archivo_input = open(nombre_archivo_input,'r')
+    lista_palabras = []
+    apariciones = []
+    texto_formateado = []
+
+    diccionario = {}
+
+    for line in archivo_input.readlines():
+        
+        lista_palabras += line.split()
+    
+    # este for me formatea las palabras que esan en lista_palabras, quita las mayusculas, '.' etc etc
+    for word in lista_palabras:
+        
+        word = word.lower()
+        word = word.replace('.','')
+        word = word.replace(',','')
+        texto_formateado.append(word)
+        
+    for word in texto_formateado:
+        
+        if word in diccionario:
+            diccionario[word] += 1
+        else:
+            diccionario[word] = 1
+
+    for word in diccionario:
+        apariciones.append(diccionario[word])
+    cantidad_maxima_de_apariciones = max(apariciones)
+    
+    for word in diccionario:
+        if diccionario[word] == cantidad_maxima_de_apariciones:
+            return word
+   
+print(laPalabraMasFrecuente('archivo_palabras.txt'))
+
 
     
