@@ -69,8 +69,8 @@ def armarSecuenciaDeBingo() -> Queue:
         result.put(elem)
     return result
 
-q = armarSecuenciaDeBingo()
-# print(q.get())
+bolillero = armarSecuenciaDeBingo()
+# print(bolillero.get())
 
 carton = [4,20,30,40,65,81,22,61,49,72,14,35]
 def jugarCartonDeBingo (carton: list, bolillero: Queue) -> int:
@@ -87,7 +87,7 @@ def jugarCartonDeBingo (carton: list, bolillero: Queue) -> int:
             return jugadas
     return -1
 
-print(jugarCartonDeBingo(carton,q))
+print(jugarCartonDeBingo(carton,bolillero))
 
 # Ejercicio 19
 
