@@ -1,3 +1,44 @@
+# Ejercicio 1
+
+# 2)
+def existe_palabra (palabra: str, nombre_archivo_input: str) -> bool:
+    archivo_input = open(nombre_archivo_input,'r')
+    lista_palabras = []
+
+    for line in archivo_input.readlines():
+        lista_palabras += line.split()
+
+    if palabra not in lista_palabras:
+        return False
+    else:
+        return True
+
+# print(existe_palabra('una','archivo_palabras.txt'))
+
+# 3)
+def cantidad_apariciones (nombre_archivo: str, palabra: str) -> int:
+    archivo_input = open(nombre_archivo,'r')
+    lista_palabras = []
+    apariciones = []
+    diccionario = {}
+
+    for line in archivo_input.readlines():
+        lista_palabras += line.split()
+        
+    for word in lista_palabras:
+        
+        if word in diccionario:
+            diccionario[word] += 1
+        else:
+            diccionario[word] = 1
+
+    for word in diccionario:
+        apariciones.append(diccionario[word])
+        
+    if palabra in diccionario:
+        return diccionario[palabra]
+
+# print(cantidad_apariciones('archivo_palabras.txt',"prueba"))
 
 # Ejercicio 2
 def es_un_comentario(line: str) -> bool:
