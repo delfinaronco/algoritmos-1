@@ -1,5 +1,17 @@
 # Ejercicio 1
 
+# 1)
+def contar_lineas (nombre_archivo: str) -> int:
+    archivo: str = open(nombre_archivo,'r')
+    lineas: list = []
+
+    for line in archivo.readlines():
+        lineas.append(line)
+
+    return len(lineas)
+
+# print(contar_lineas('archivo_palabras.txt'))
+
 # 2)
 def existe_palabra (palabra: str, nombre_archivo_input: str) -> bool:
     archivo_input = open(nombre_archivo_input,'r')
@@ -66,6 +78,103 @@ def clonarSinComentarios(nombre_archivo_input: str) -> None:
     archivo_output.close()
 
 # clonarSinComentarios('ejercicio_2_input.txt')
+
+# Ejercicio 3
+
+def reverso (nombre_archivo_input: str):
+    archivo_input: str = open(nombre_archivo_input,'r')
+
+    nombre_archivo_output: str = 'reverso.txt'
+    archivo_output = open(nombre_archivo_output, 'w')
+    
+    lineas: list = []
+
+    for line in archivo_input.readlines():
+        lineas.append(line)
+
+    lineas.reverse()
+
+    for line in lineas:
+        archivo_output.write(f"{line}\n")
+
+# reverso('archivo_palabras.txt')
+
+# Ejercicio 4
+
+def frase (nombre_archivo: str, nueva_frase: str):
+    archivo: str = open (nombre_archivo,'r')
+
+    todas_las_lineas: list = []
+
+    for line in archivo.readlines():
+        todas_las_lineas.append(line)
+
+    todas_las_lineas.append(nueva_frase)
+
+    archivo: str = open(nombre_archivo,'w')
+
+    print(todas_las_lineas)
+
+    for line in todas_las_lineas:
+        
+        archivo.write(line)
+
+# frase('archivo_palabras.txt',"que onda")
+
+# Ejercicio 5
+
+def frase_al_inicio (nombre_archivo: str, nueva_frase: str):
+    archivo: str = open (nombre_archivo,'r')
+
+    todas_las_lineas: list = []
+
+    for line in archivo.readlines():
+        todas_las_lineas.append(line)
+
+    todas_las_lineas.insert(0,f"{nueva_frase}\n")
+
+    print(todas_las_lineas)
+
+    archivo: str = open(nombre_archivo,'w')
+    for line in todas_las_lineas:
+        archivo.write(line)
+
+# frase_al_inicio('archivo_palabras.txt',"que onda")
+
+# PILAS
+from queue import LifoQueue as Pila
+
+# Ejercicio 9
+
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+
+def pila_copy (p: Pila) -> Pila:
+    elements = []
+    p_copy = Pila()
+
+    while not p.empty():
+        elements.append(p.get())
+
+    for i in range (len(elements)-1,-1,-1):
+        p_copy.put(elements[i])
+
+    return p_copy
+
+
+def cantidad_elementos (p: Pila) -> int: 
+
+    contador = 0
+
+    while not p.empty():
+        elemento = p.get()
+        contador += 1
+
+    return contador
+
+# print(cantidad_elementos(p))
 
 # Ejercicio 10
 from queue import LifoQueue
