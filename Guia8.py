@@ -299,5 +299,135 @@ def laPalabraMasFrecuente(nombre_archivo_input: str):
    
 print(laPalabraMasFrecuente('archivo_palabras.txt'))
 
+import poplib
+from queue import LifoQueue as Pila
+import random
+
+# Ejercicio 8
+
+def generar_nros_al_azar (n: int, desde: int, hasta: int) -> Pila:
+    nros = Pila()
+
+    for i in range (n):
+        nros.put(random.randint(desde,hasta))
+
+    print(list(nros.queue))
+
+# generar_nros_al_azar(5,1,10)
+
+
+# COLAS
+from queue import Queue as Cola
+
+# Ejercicio 13
+
+def generar_nros_al_azar_colas (n: int, desde: int, hasta: int):
+    cola: Cola = Cola()
+
+    for i in range(n):
+        cola.put(random.randint(desde,hasta))
+    
+    print(list(cola.queue))
+
+# generar_nros_al_azar_colas(5,1,10)
+
+# Ejercicio 14
+
+c = Cola()
+
+c.put(1)
+c.put(5)
+c.put(3)
+
+def cantidad_elementos_cola (c: Cola) -> int:
+    elementos: list = []
+    contador: int = 0
+    
+    while not c.empty():
+        elementos.append(c.get())
+        contador += 1
+
+# reconstruccion de la cola
+    print(elementos)
+    for i in range(len(elementos)):
+        c.put(elementos[i])
+
+    return contador
+
+# print(cantidad_elementos_cola(c))
+
+# Ejercicio 15
+
+def buscar_el_maximo_cola (c: Cola) -> int:
+    elementos: list = []
+
+    while not c.empty():
+        elementos.append(c.get())
+
+    print(elementos)  
+
+    for i in range(len(elementos)):
+        c.put(elementos[i])
+
+    return max(elementos)
+
+# print(buscar_el_maximo_cola(c))
+
+# Ejercicio 17
+
+pacientes = Cola()
+
+pacientes.put((1,'Maria','cirugia'))
+pacientes.put((5,'Nicolas','oftalmologia'))
+pacientes.put((2,'Lucia','dermatologia'))
+pacientes.put((8,"Lucas","pediatria"))
+
+def n_pacientes_urgentes (pacientes: Cola) -> int:
+    lista_pacientes: list = []
+    contador: int = 0
+
+    while not pacientes.empty():
+        lista_pacientes.append(pacientes.get())
+
+    for i in range(len(lista_pacientes)):
+        if lista_pacientes[i][0] <= 3:
+            contador += 1
+
+    # para reconstruir la cola
+    for i in range(len(lista_pacientes)):
+        pacientes.put(lista_pacientes[i])
+    
+    # print(list(pacientes.queue))
+
+    return contador
+    
+# print(n_pacientes_urgentes(pacientes))
+
+# Ejercicio 18
+
+clientes_cola = Cola()
+clientes_cola.put(('Delfina',43866161,False,False))
+clientes_cola.put(('Maria',32854786,True,False))
+clientes_cola.put(('Juan',23452861,True,True))
+
+def a_clientes(clientes_cola: Cola) -> Cola:
+    cola_de_atencion = Cola()
+    lista_clientes: list = []
+    
+    while not clientes_cola.empty():
+        lista_clientes.append(clientes_cola.get())
+    
+    for i in range(len(lista_clientes)):
+        if lista_clientes[i][3] == True:
+            cola_de_atencion.put(lista_clientes[i])
+
+        elif lista_clientes[i][2] == True:
+            cola_de_atencion.put(lista_clientes[i])
+           
+        
+    for i in range(len(lista_clientes)):
+        cola_de_atencion.put(lista_clientes[i])
+
+a_clientes(clientes_cola)
 
     
