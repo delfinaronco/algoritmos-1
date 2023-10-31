@@ -157,6 +157,7 @@ def generar_nros_al_azar (n: int, desde: int, hasta: int) -> Pila:
     print(list(nros.queue))
 
 # generar_nros_al_azar(5,1,10)
+
 # Ejercicio 9
 
 p = Pila()
