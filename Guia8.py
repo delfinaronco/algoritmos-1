@@ -255,6 +255,31 @@ pila.put(-4)
 # print(list(pila.queue))
 # print(buscarElMaximo(pila))
 
+# Ejercicio 11
+
+def esta_bien_balanceada(s: str) -> bool:
+    
+    parentesis: list = []
+    parentesis_de_apertura: list = []
+    parentesis_de_cierre: list = []
+    
+    for i in s:
+        if i == '(' or i == ')':
+            parentesis.append(i)
+
+    if  not (parentesis[0] == '('and len(parentesis)%2 == 0):
+        return False
+    
+    for i in parentesis:
+        if i == '(':
+            parentesis_de_apertura.append(i)
+        else:
+            parentesis_de_cierre.append(i)    
+
+    return len(parentesis_de_apertura) == len(parentesis_de_cierre)    
+
+# print(esta_bien_balanceada('(2+(2*3)-(15/5)'))
+
 # COLAS
 from queue import Queue as Cola
 
