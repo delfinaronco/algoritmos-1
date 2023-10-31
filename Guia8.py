@@ -141,6 +141,43 @@ def frase_al_inicio (nombre_archivo: str, nueva_frase: str):
 
 # frase_al_inicio('archivo_palabras.txt',"que onda")
 
+# Ejercicio 7
+
+def promedio_estudiante (legajo: str) -> float:
+
+    archivo_legajo: str = open('legajo.csv','r')
+    datos: list = []
+    datos_alumno: list = []
+    notas_del_alumno: list = []
+    notas_del_alumno_formateada: list = []
+    notas_del_alumno_formateada_float: list = []
+
+    suma_notas: float = 0
+
+    for line in archivo_legajo.readlines():
+        datos.append(line)
+    
+    for notas in datos:
+        datos_alumno.append(notas.split(','))
+
+    for i in range(len(datos_alumno)):
+        notas_del_alumno.append(datos_alumno[i][-1])
+
+    for i in range(len(notas_del_alumno)):
+        notas_del_alumno_formateada.append(notas_del_alumno[i].strip('\n'))
+
+    for notas in notas_del_alumno_formateada:
+        notas_del_alumno_formateada_float.append(float(notas))
+
+    for notas in notas_del_alumno_formateada_float:
+        suma_notas += notas 
+
+    promedio = suma_notas/len(notas_del_alumno_formateada_float)
+
+    return promedio
+
+# print(promedio_estudiante('legajo.csv'))
+
 # PILAS
 from queue import LifoQueue as Pila
 import poplib
