@@ -143,40 +143,50 @@ def frase_al_inicio (nombre_archivo: str, nueva_frase: str):
 
 # Ejercicio 7
 
-def promedio_estudiante (legajo: str) -> float:
-
-    archivo_legajo: str = open('legajo.csv','r')
-    datos: list = []
-    datos_alumno: list = []
+def promedio_estudiante(legajo: str) -> float:
+    
+    file_notas_alumnos: str = open('notas.csv', 'r')
+    datos_alumnos: list = []
+    notas_de_todos_alumnos: list = []
     notas_del_alumno: list = []
     notas_del_alumno_formateada: list = []
     notas_del_alumno_formateada_float: list = []
-
-    suma_notas: float = 0
-
-    for line in archivo_legajo.readlines():
-        datos.append(line)
     
-    for notas in datos:
-        datos_alumno.append(notas.split(','))
+    suma_notas: float = 0
+  
+ 
+    for line in file_notas_alumnos.readlines():
+     
+        datos_alumnos.append(line)
+                
+           
+    for notas in datos_alumnos:
+        notas_de_todos_alumnos.append(notas.split(','))
 
-    for i in range(len(datos_alumno)):
-        notas_del_alumno.append(datos_alumno[i][-1])
+     
+    for i in range(len(notas_de_todos_alumnos)):
+            
+        if f"'{legajo}'"== notas_de_todos_alumnos[i][0]:
+            notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
+      
 
     for i in range(len(notas_del_alumno)):
+        
         notas_del_alumno_formateada.append(notas_del_alumno[i].strip('\n'))
+
 
     for notas in notas_del_alumno_formateada:
         notas_del_alumno_formateada_float.append(float(notas))
-
+        
     for notas in notas_del_alumno_formateada_float:
-        suma_notas += notas 
+        suma_notas += notas
 
     promedio = suma_notas/len(notas_del_alumno_formateada_float)
 
-    return promedio
-
-# print(promedio_estudiante('legajo.csv'))
+    return promedio 
+   
+   
+# print(promedio_estudiante('2'))
 
 # PILAS
 from queue import LifoQueue as Pila
@@ -472,6 +482,50 @@ def agruparPorLongitud (nombre_archivo_input: str) -> dict:
     return res
 
 # print(agruparPorLongitud('archivo_palabras.txt'))
+
+# Ejercicio 20
+
+def promedio_alumnos_dict (archivo_legajo: str) -> dict:
+    
+    archivo_legajo: str = open(archivo_legajo,'r')
+    datos: list = []
+    datos_alumno: list = []
+    legajos: list = []
+    legajos_formateado: list = []
+    promedios: list = []
+    diccionario: dict = {}
+    
+    for line in archivo_legajo.readlines():
+        datos.append(line)
+    
+    for notas in datos:
+        datos_alumno.append(notas.split(','))
+
+    for i in range(len(datos_alumno)):
+        legajos.append(datos_alumno[i][0])
+
+    for legajo in legajos:
+        legajos_formateado.append(legajo.strip("'"))
+    
+    for legajo in legajos_formateado:
+        promedios.append(promedio_estudiante(legajo))
+    
+    promedios = quitar_repetidos(promedios)
+    
+    legajos_formateado = quitar_repetidos(legajos_formateado)
+   
+    i = 0    
+    for legajo in legajos_formateado:  
+        
+        diccionario[legajo] = promedios[i]
+        i += 1
+   
+   
+    return diccionario
+    
+        
+# print(promedio_alumnos_dict('notas.csv'))
+ 
 
 # Ejercicio 21
 
