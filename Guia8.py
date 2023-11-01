@@ -566,3 +566,39 @@ def laPalabraMasFrecuente(nombre_archivo_input: str):
    
 print(laPalabraMasFrecuente('archivo_palabras.txt'))
 
+# Ejercicio 23
+
+inventario: dict = {}
+
+def agregar_producto (inventario, nombre, precio, cantidad):
+    
+    inventario[nombre] = {'precio':precio, 'cantidad':cantidad}
+    
+ 
+def actualizar_stock (inventario, nombre, cantidad):
+    if nombre in inventario:
+        inventario[nombre]['cantidad'] = cantidad
+
+
+def actualizar_precios (inventario, nombre, precio):
+    
+    inventario[nombre]['precio'] = precio
+    
+agregar_producto(inventario, 'guitarra', 200, 3)
+agregar_producto(inventario,'bajo', 150, 2)
+agregar_producto(inventario,'piano', 400, 1)
+
+# print(inventario)
+
+def calcular_valor_inventario (inventario):
+
+    valor = 0
+    
+    for nombre in inventario:
+        valor_producto = inventario[nombre]['precio'] * inventario[nombre]['cantidad']
+        valor += valor_producto
+    
+    return valor
+    
+            
+# print(calcular_valor_inventario(inventario))
