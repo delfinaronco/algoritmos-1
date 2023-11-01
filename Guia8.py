@@ -566,6 +566,59 @@ def laPalabraMasFrecuente(nombre_archivo_input: str):
    
 print(laPalabraMasFrecuente('archivo_palabras.txt'))
 
+
+# Ejercicio 22
+
+from queue import LifoQueue
+
+historiales: dict = {}
+
+ultimo_sacado: list = []
+
+def visitar_sitio (historiales, usuario, sitio):
+
+    if not usuario in historiales:
+        paginas_web = LifoQueue()
+        paginas_web.put(sitio)
+        historiales[usuario] = paginas_web
+
+    else:
+        historiales[usuario].put(sitio)
+
+visitar_sitio (historiales, 'usuario1','google.com')
+visitar_sitio (historiales,'usuario1','youtube.com')
+visitar_sitio (historiales, 'usuario2','instagram.com')
+visitar_sitio (historiales, 'usuario1','tumblr.com')
+visitar_sitio(historiales,'usuario2','twitter.com')
+
+# print(list(historiales['usuario1'].queue))
+
+def navegar_atras (historiales, usuario):
+
+    if usuario in historiales:
+        ultimo_sacado.append(historiales[usuario].get())
+
+    return ultimo_sacado
+
+
+# print(list(historiales['usuario2'].queue))
+
+
+def navegar_adelante (historiales, usuario):
+
+    if usuario in historiales:
+            
+            ultimo_sacado_reverso = ultimo_sacado[::-1]
+
+            historiales[usuario].put(ultimo_sacado_reverso[0])
+            ultimo_sacado.remove(ultimo_sacado_reverso[0])
+
+# navegar_atras(historiales,'usuario2')
+# navegar_adelante(historiales,'usuario2')
+
+# print(list(historiales['usuario2'].queue))
+
+
 # Ejercicio 23
 
 inventario: dict = {}
