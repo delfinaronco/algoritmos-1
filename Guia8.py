@@ -378,42 +378,44 @@ clientes_cola.put(('j',7, True, False))
 clientes_cola.put(('a',4, False, False))
 clientes_cola.put(('x',2, True, True))
 
-def a_clientes(clientes_cola: Cola) -> Cola:
-
-    cola_de_atencion = Cola()
-    lista_clientes: list = []
-    clientes_con_prioridad: list = []
-    clientes_con_cuenta: list = []
-    clientes_sin_cuenta: list = []
+def promedio_estudiante(legajo: str) -> float:
     
-    while not clientes_cola.empty():
-        lista_clientes.append(clientes_cola.get())
+    file_notas_alumnos: str = open('notas.csv', 'r')
+    datos_alumnos: list = []
+    notas_de_todos_alumnos: list = []
+    notas_del_alumno: list = []
+    notas_del_alumno_formateada: list = []
+    notas_del_alumno_formateada_float: list = []
     
-    # aca los elementos de lista_clientes no estan ordenados por prioridad, separo en listas a los clientes con prioridad,
-    #para despues ordenarlos 
-    for i in range(len(lista_clientes)):
-        
-        if lista_clientes[i][3] == True:
-            clientes_con_prioridad.append(lista_clientes[i])
+    suma_notas: float = 0
+    
+ 
+    for line in file_notas_alumnos.readlines():
+     
+        datos_alumnos.append(line)  
+           
+    for notas in datos_alumnos:
+        notas_de_todos_alumnos.append(notas.split(','))
+     
+    for i in range(len(notas_de_todos_alumnos)):
             
-        elif lista_clientes[i][2] == True:
-            clientes_con_cuenta.append(lista_clientes[i]) 
-             
-        else:
-            clientes_sin_cuenta.append(lista_clientes[i])
+        if f"'{legajo}'"== notas_de_todos_alumnos[i][0]:
+            notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
 
-    #reescribo  lista_clientes con los clientes ahora ordenados por prioridad 
-    #ejemplo a = [2,4,3,1], b=[1,2], c = [3,4] al hacer a = b + c las listas se concatenan
-    # me quedaria a = [1,2,3,4]
-    lista_clientes = clientes_con_prioridad + clientes_con_cuenta + clientes_sin_cuenta
-    
-    # como los elementos de lista_clientes ahora estan ordenados por prioridad agrego sus elementos
-    # a cola_de_atencion
-    for i in range(len(lista_clientes)):
-        cola_de_atencion.put(lista_clientes[i])
-    
-    print(list(cola_de_atencion.queue))
-    return cola_de_atencion
+    for i in range(len(notas_del_alumno)):
+        
+        notas_del_alumno_formateada.append(notas_del_alumno[i].strip('\n'))
+
+    for notas in notas_del_alumno_formateada:
+        notas_del_alumno_formateada_float.append(float(notas))
+        
+    for notas in notas_del_alumno_formateada_float:
+        sumar_notas += 0
+
+    promedio = sumar_notas/len(notas_del_alumno_formateada_float)
+
+    return promedio
+   
 
 # Ejercicio 16
 import numpy as np
