@@ -50,15 +50,38 @@ def n_apariciones (l: list, n: int, e: int) -> int:
 
 # print(n_apariciones([33,129,98,129,33],3,129))
 
+
 # Ejercicio 2
 
 caballos = ['pepito','juanita','carlos','rayo']
 
 carreras = {'carrera1':['juanita','pepito','rayo','carlos'],'carrera2':['rayo','carlos','pepito','juanita']}
 
+def posicion (caballo: str, lista: list) -> int:
+
+    for i in range(len(lista)):
+        if caballo == lista[i]:
+            return i
+        
+# print(posicion('juanita',['marta','carlos','juanita']))
+
 def pos_caballos (caballos: list, carreras: dict) -> dict:
     
     claves_caballos: dict = {}
 
     for i in caballos:
-        
+        claves_caballos[i] = [0]*len(caballos)
+
+    for carrera in carreras:
+        for caballo in carreras[carrera]:
+            if caballo in carreras[carrera]:
+                pos = posicion(caballo, carreras[carrera])
+                claves_caballos[caballo][pos] += 1
+                #print(caballo, claves_caballos[caballo][3])
+                
+    return claves_caballos
+                
+
+# print(pos_caballos(caballos,carreras))
+
+     
