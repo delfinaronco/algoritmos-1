@@ -77,11 +77,46 @@ lesGustanLasMismasPublicaciones red usuario1 usuario2 = mismosElementos (publica
 
 red1 = ([(1,"Delfina"),(2,"Nahuel"),(3,"Franco")],[((1,"Delfina"),(2,"Nahuel")),((1,"Delfina"),(2,"Franco"))],[((1,"Delfina"),"hola mundo",[(2,"Nahuel"),(3,"Franco")]),((2,"Nahuel"),"chau",[(3,"Franco"),(2,"Nahuel")])])
 
-aux3 :: RedSocial -> [Usuario]
-aux3 red = usuarios red
-
---nombreDeUsuario :: Usuario -> String
---nombreDeUsuario (_, nombre) = nombre
+aux3 :: [Usuario] -> [String]
+aux3 [] = []
+aux3 ((a,b):xs) = b : aux3 xs
 
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios red = nombreDeUsuario (usuarios red)
+nombresDeUsuarios red = aux3 (usuarios red)
+
+-- Ejercicio 2
+
+amigosDe :: RedSocial -> Usuario -> [Usuario]
+amigosDe red usuario = amigosDeAux (relaciones red) usuario
+
+
+amigosDeAux :: [Relacion] -> Usuario -> [Usuario]
+amigosDeAux [] _ = []
+amigosDeAux ((a,b):xs) usuario | usuario == a = b : amigosDeAux xs usuario
+                               | usuario == b = a : amigosDeAux xs usuario
+                               | otherwise = amigosDeAux xs usuario
+
+user1 = (1,"Juan")
+user2 = (2, "Maria")
+user3 = (3,"Nahuel")
+user4 = (4,"Delfina")
+
+-- [(user1,user3),(user1,user2)]
+
+-- Ejercicio 3
+
+cantidadDeAmigos :: RedSocial -> Usuario -> Int
+cantidadDeAmigos red usuario = length (amigosDe red usuario)
+
+-- Ejercicio 4
+
+usuarioConMasAmigosAux :: RedSocial -> [Usuario] -> Usuario
+usuarioConMasAmigosAux red [x] = x
+usuarioConMasAmigosAux red (x:y:xs) | (cantidadDeAmigos red x) >= (cantidadDeAmigos red y) = usuarioConMasAmigosAux red (x:xs)
+                                 | otherwise = usuarioConMasAmigosAux red (y:xs)
+
+usuarioConMasAmigos :: RedSocial -> Usuario
+usuarioConMasAmigos red = usuarioConMasAmigosAux red (usuarios red)
+
+
+
