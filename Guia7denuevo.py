@@ -299,4 +299,62 @@ def mis_estudiantes () -> list:
 
 # print(mis_estudiantes())
 
+def sube () -> list:
+    operacion: str = ""
+    historial: list = []
+    saldo: int = 0
+
+    while operacion != "X":
+        operacion: str = input("operacion: ")
+
+        if operacion == "C":
+            monto = int(input ("monto: "))
+            saldo += monto
+            historial.append(("C",monto))
+            
+        elif operacion == "D":
+            monto = int(input("monto: "))
+            saldo -= monto 
+            historial.append(("D",monto)) 
+
+    return f"{historial}, tu saldo disponible es: {saldo}"
+
+# print(sube())
+
+def pertenece_a_cada_uno (lista: list, n: int) -> list:
+    res: list = []
+
+    for i in lista:
+        if pertenece (i,n):
+            res.append(True)
+        else: 
+            res.append(False)
+
+    return res
+
+# print(pertenece_a_cada_uno([[1,2,3],[2,3,4],[1,2,1]],3))
+
+def es_matriz (s: list) -> bool:
+
+    for i in range(len(s)):
+        if len(s[0]) != len(s[i]):
+            return False
+        
+    return True
+                          
+# print(es_matriz([[1,2,3],[2,1,4],[5,5,5]]))
+
+def filas_ordenadas (matriz: list) -> list:
+    res: list = []
+
+    for fila in matriz:
+        if not ordenados(fila):
+            res.append(False)
+        else:
+            res.append(True)
+
+    return res
+
+# print(filas_ordenadas([[1,2,3],[2,1,3],[1,2,2]]))
+
 
