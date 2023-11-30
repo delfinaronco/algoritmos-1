@@ -326,7 +326,133 @@ def agrupar_por_longitud (nombre_archivo: str) -> dict:
                 
 
 # print(agrupar_por_longitud('palabras.txt'))
-        
+
+def la_palabra_mas_frecuente (nombre_archivo: str) -> str:
+
+    archivo: str = open (nombre_archivo,'r')
+    palabras: list = []
+    texto_formateado: list = []
+    apariciones: list = []
+    diccionario: dict = {}
+    
+    for line in archivo.readlines():
+        palabras += line.split()
+
+    for palabra in palabras:
+        palabra = palabra.lower()
+        palabra = palabra.replace('.','')
+        palabra = palabra.replace(',','')
+        texto_formateado.append(palabra)
+
+    for word in texto_formateado:
+        if word in diccionario:
+            diccionario[word] += 1
+        else:
+            diccionario[word] = 1
+
+    for word in diccionario:
+        apariciones.append(diccionario[word])
+
+    for word in diccionario:
+        if diccionario[word] == max(apariciones):
+            return word
+
+# print(la_palabra_mas_frecuente('parciales.txt'))
+
+from queue import LifoQueue as Pila
+
+historiales: dict = {}
+ultimo_sacado: list = []
+
+def visitar_sitio (historiales, usuario, sitio):
+
+    if not usuario in historiales:
+        paginas_web = Pila()
+        paginas_web.put(sitio)
+        historiales[usuario] = paginas_web
+
+    else:
+        historiales[usuario].put(sitio)
+
+# visitar_sitio(historiales,'usuario1','google.com')
+# visitar_sitio(historiales,'usuario1','youtube.com')
+# visitar_sitio(historiales,'usuario2','instagram.com')
+# visitar_sitio(historiales,'usuario2','twitch.com')
+# visitar_sitio(historiales,'usuario1','tiktok')
+
+# print(list(historiales['usuario1'].queue))
+
+def navegar_atras (historiales, usuario):
+
+    if usuario in historiales:
+        ultimo_sacado.append(historiales[usuario].get())
+
+    return ultimo_sacado
+
+# navegar_atras(historiales,'usuario1')
+# navegar_atras(historiales,'usuario1')
+
+# print(list(historiales['usuario1'].queue))
+
+def navegar_adelante (historiales, usuario):
+
+    ultimo_sacado_reverso: list = []
+
+    if usuario in historiales:
+       
+        for i in range(len(ultimo_sacado)-1,-1,-1):
+            ultimo_sacado_reverso.append(ultimo_sacado[i])
+
+        historiales[usuario].put(ultimo_sacado_reverso[0])
+        ultimo_sacado.remove(ultimo_sacado_reverso[0])
+       
+
+# navegar_adelante(historiales,'usuario1')
+# navegar_atras(historiales,'usuario1')
+# navegar_adelante(historiales,'usuario1')
+# navegar_atras(historiales,'usuario1')
+# navegar_atras(historiales,'usuario1')
+# navegar_adelante(historiales,'usuario1')
+# navegar_adelante(historiales,'usuario1')
+# navegar_adelante(historiales,'usuario1')
+
+# print(list(historiales['usuario1'].queue))
+
+inventario: dict = {}
+
+def agregar_producto (inventario, nombre, precio, cantidad):
+
+    if nombre not in inventario:
+        inventario[nombre] = {'precio': precio,'cantidad': cantidad} 
+
+agregar_producto(inventario,'remera', 2000, 1)
+agregar_producto(inventario,'pantalon',6000,2)
+# print(inventario)
+
+def actualizar_stock (inventario, nombre, cantidad):
+
+    if nombre in inventario:
+        inventario[nombre]['cantidad'] += cantidad
+
+# actualizar_stock(inventario, 'remera', 3)
+# actualizar_stock(inventario,'pantalon',2)
+# print(inventario)
+
+def calcular_valor_inventario (inventario):
+
+    total = 0
+
+    for nombre in inventario:
+        valor_producto = inventario[nombre]['precio'] * inventario[nombre]['cantidad']
+
+        total += valor_producto
+
+    return total
+
+# print(inventario)
+# print(calcular_valor_inventario(inventario))
+
+
 
 
 
