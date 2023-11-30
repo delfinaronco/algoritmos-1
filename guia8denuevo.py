@@ -306,7 +306,26 @@ def a_clientes (cola_de_ingreso: Cola) -> Cola:
 
 # a_clientes(cola_de_ingreso)
 
+def agrupar_por_longitud (nombre_archivo: str) -> dict:
 
+    archivo: str = open (nombre_archivo,'r')
+    palabras: list = []
+    diccionario: dict = {}
+
+    for line in archivo.readlines():
+        palabras += line.split()
+
+    for palabra in palabras:
+
+        if len(palabra) not in diccionario:
+            diccionario[len(palabra)] = 1
+        else:
+            diccionario[len(palabra)] += 1
+
+    return diccionario
+                
+
+# print(agrupar_por_longitud('palabras.txt'))
         
 
 
