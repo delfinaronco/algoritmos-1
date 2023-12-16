@@ -65,4 +65,4 @@ def colectivos_a_bondis (nombre_archivo_input: str):
 
     return archivo_output
 
-colectivos_a_bondis('colectivos.txt')
+# colectivos_a_bondis('colectivos.txt')
