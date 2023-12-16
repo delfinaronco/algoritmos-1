@@ -40,3 +40,29 @@ def artista_mas_escuchado (reproducciones: dict) -> str:
     
          
 # print(artista_mas_escuchado(reproducciones))
+
+def colectivos_a_bondis (nombre_archivo_input: str):
+
+    archivo_input = open(nombre_archivo_input,'r')
+    archivo_output = open('bondis','w')
+    palabras: list = []
+    nuevo_texto: list = []
+
+    for line in archivo_input.readlines():
+        palabras += line.split()
+
+    for palabra in palabras:
+
+        palabra = palabra.replace('colectivo','bondi')
+        palabra = palabra.replace('.','.\n')
+        nuevo_texto.append(palabra)
+
+    for word in nuevo_texto:
+        if '.' in word:
+            archivo_output.write(word)
+        else:
+            archivo_output.write(word + ' ')
+
+    return archivo_output
+
+colectivos_a_bondis('colectivos.txt')
