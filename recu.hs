@@ -98,3 +98,18 @@ desplazar caracter n | (esMin caracter == False) = caracter
                      | (charANat caracter + n) > 26 = natAChar ((charANat caracter - 26) + n)
                      | (charANat caracter + n) < 1 = natAChar ((charANat caracter + 26) + n)
                      | otherwise = natAChar ((charANat caracter) + n)
+
+-- Ejercicio 4
+
+codificar :: String -> Int -> String
+codificar [] n = []
+codificar (x:xs) n | (esMin x) = (desplazar x n) : (codificar xs n)
+                   | otherwise = x : (codificar xs n)
+
+
+-- Ejercicio 5
+
+decodificar :: String -> Int -> String
+decodificar [] n = []
+decodificar (x:xs) n | (esMin x) = (desplazar x (-n)) : (decodificar xs n)
+                     | otherwise = x : decodificar xs n
